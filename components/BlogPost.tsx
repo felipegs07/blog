@@ -15,14 +15,14 @@ export const BlogPost: React.FunctionComponent<{ post: PostData }> = ({
         <img className="blog-post-image" src={post.bannerPhoto} />
       )}
 
-      <div className="blog-post-title">
+      <div className="blog-post-title wrapper">
         {title && <h1>{title}</h1>}
         {subtitle && <h2>{subtitle}</h2>}
         <br />
         <Author post={post} />
       </div>
 
-      <div className="blog-post-content">
+      <div className="blog-post-content wrapper">
         <Markdown source={post.content} />
       </div>
     </div>

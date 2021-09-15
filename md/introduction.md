@@ -1,9 +1,25 @@
-Devii is a starter kit for building your personal developer website. Powered by the best technologies 2020 has to offer.
+my name is Felipe Gustavo, my pronouns are he/him.  
+I am a brazilian software developer based in São Paulo, Brazil.  
+interested in open source development.
 
-It's not a a framework or a library, it's a just a simple project that contains some useful utilities and patterns that'll help you hit the ground running. In fact, the [GitHub repo for Devii](https://github.com/colinhacks/devii) contains the code for the site you're currently reading!
+**currently:**
+- 🖥 working as software developer at CI&T.
+- 📔 studying micro-frontends.
+- 🛠 building [jetpage.js](https://github.com/felipegs07/jetpage.js).
 
-Devii doesn't try to be a fully functional blog out of the box. After cloning/forking the repo, you'll need to delete the contents of `index.tsx` (the page you're reading now!) and implement your own homepage. Devii makes it easier — for instance, you can access a list of all your blog posts in `props.posts` — but you still have to build the site you're imagining in your mind's eye.
+**you can find me on:**
 
-And that's the point! After you clone/fork it, look through this code to learn how Devii works. Then rip out what you don't like, customize everything else, and build your own tools and components on top of the foundation Devii provides!
-
-Devii was designed to place _zero restrictions_ on what your site can be or become. You can use any React component or styling library, pull in data from third-party APIs, even implement user accounts. Your personal website is the online manifestation of you. Don't compromise.
+<div>
+  <a href="https://www.linkedin.com/in/felipegustavos/">
+    <img src="https://image.flaticon.com/icons/png/512/1383/1383262.png" style="height: 32px; width: 32px" title="Linkedin"></img>
+  </a>
+  <a href="mailto:felipegdas07@gmail.com">
+    <img src="https://image.flaticon.com/icons/png/512/2875/premium/2875394.png" style="height: 32px; width: 32px" title="Email"></img>
+  </a>
+  <a href="https://t.me/felipegs">
+    <img src="https://image.flaticon.com/icons/png/512/408/408737.png" style="height: 32px; width: 32px" title="Telegram"></img>
+  </a>
+  <a href="https://dev.to/felipegs">
+    <img src="https://image.flaticon.com/icons/png/512/2593/premium/2593549.png" style="height: 32px; width: 32px" title="Blog"></img>
+  </a>
+<div>

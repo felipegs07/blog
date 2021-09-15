@@ -1,131 +1,375 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[My Awesome Blog]]></title><description><![CDATA[I write about code 'n stuff]]></description><link>https://alyssaphacker.com</link><image><url>https://alyssaphacker.com/icon.png</url><title>My Awesome Blog</title><link>https://alyssaphacker.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 09 Aug 2021 17:22:25 GMT</lastBuildDate><atom:link href="https://alyssaphacker.com/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 03 Mar 2020 04:00:00 GMT</pubDate><copyright><![CDATA[2021 Alyssa P. Hacker]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[alyssa@example.com]]></managingEditor><webMaster><![CDATA[alyssa@example.com]]></webMaster><ttl>60</ttl><item><title><![CDATA[Dan Abramov knows about Devii]]></title><description><![CDATA[<p>Dan Abramov knows about Devii!</p>
-<blockquote>
-  <p>Seems like it might be useful!
-  — Dan Abramov, taken entirely out of context</p>
-</blockquote>
-<p>I don't want to brag, but Devii is kind of a big deal.</p>]]></description><link>https://alyssaphacker.com/blog/dan-abramov</link><guid isPermaLink="true">https://alyssaphacker.com/blog/dan-abramov</guid><category><![CDATA[Dan Abramov]]></category><dc:creator><![CDATA[Colin McDonnell]]></dc:creator><pubDate>Fri, 10 Jul 2020 23:51:18 GMT</pubDate></item><item><title><![CDATA[Choosing a tech stack for my personal dev blog in 2020]]></title><description><![CDATA[<blockquote>
-  <p>Originally published at <a href="https://colinhacks.com/essays/devii">https://colinhacks.com/essays/devii</a>. Check out the HN <del>roast</del> discussion <a href="https://news.ycombinator.com/item?id=23309002">here</a>! 🤗</p>
-</blockquote>
-<p>I recently set out to build my personal website — the one you're reading now, as it happens!</p>
-<p>Surprisingly, it was much harder than expected to put together a "tech stack" that met my criteria. My criteria are pretty straightforward; I would expect most React devs to have a similar list. Yet it was surprisingly hard to put all these pieces together.</p>
-<p>Given the lack of a decent out-of-the-box solution, I worry that many developers are settling for static-site generators that place limits on the interactivity and flexibility of your website. We can do better.</p>
-<blockquote>
-  <p>Clone the repo here to get started with this setup: https://github.com/colinhacks/devii</p>
-</blockquote>
-<p>Let's quickly run through my list of design goals:</p>
-<h3 id="reacttypescript">React (+ TypeScript)</h3>
-<p>I want to build the site with React and TypeScript. I love them both wholeheartedly, I use them for my day job, and they're gonna be around for a long time. Plus writing untyped JS makes me feel dirty.</p>
-<p>I don't want limitations on what my personal website can be/become. Sure, at present my site consists of two simple, static blog posts. But down the road, I may want to build a page that contains an interactive visualization, a filterable table, or a demo of a React component I'm open-sourcing. Even something simple (like the email newsletter signup form at the bottom of this page) was much more pleasant to implement in React; how did we use to build forms again?</p>
-<p>Plus: I want access to the npm ecosystem and all my favorite UI, animation, and styling libraries. I sincerely hope I never write another line of raw CSS ever again; CSS-in-JS 4 lyfe baby. If you want to start a Twitter feud with me about this, by all means <a href="https://twitter.com/colinhacks">at me</a>.</p>
-<h3 id="goodauthoringexperience">Good authoring experience</h3>
-<p>If it's obnoxious to write new blog posts, I won't do it. That's a regrettable law of the universe. Even writing blog posts with plain HTML — just a bunch of <code>&lt;p&gt;</code> tags in a div — is just annoying enough to bug me. The answer: Markdown of course!</p>
-<p>Static site generators (SSGs) like Hugo and Jekyll provide an undeniably wonderful authoring experience. All you have to do is <code>touch</code> a new .md file in the proper directory and get to writing. Unfortunately all Markdown-based SSGs I know of are too restrictive. Mixing React and Markdown on the same page is either impossible or tricky. If it's possible, it likely requires some plugin/module/extension, config file, blob of boilerplate, or egregious hack. Sorry Hugo, I'm not going to re-write my React code using <code>React.createElement</code> like it's 2015.</p>
-<p>Well, that doesn't work for me. I want my website to be React-first, with a sprinkling of Markdown when it makes my life easier.</p>
-<h3 id="staticgeneration">Static generation</h3>
-<p>As much as I love the Jamstack, it doesn't cut it from an SEO perspective. Many blogs powered by a "headless CMS" require two round trips before rendering the blog content (one to fetch the static JS bundle and another to fetch the blog content from a CMS). This degrades page load speeds and user experience, which accordingly degrades your rankings on Google.</p>
-<p>Instead I want every page of my site to be pre-rendered to a set of fully static assets, so I can deploy them to a CDN and get fast page loads everywhere. You could get the same benefits with server-side rendering, but that requires an actual server and worldwide load balancing to achieve comparable page load speeds. I love overengineering things as much as the next guy, even I have a line. 😅</p>
-<h2 id="mysolution">My solution</h2>
-<p>I describe my final architecture design below, along with my rationale for each choice. I distilled this setup into a website starter/boilerplate available here: https://github.com/colinhacks/devii. Below, I allude to certain files/functions I implemented; to see the source code of these, just clone the repo <code>git clone git@github.com:colinhacks/devii.git</code></p>
-<h3 id="nextjs">Next.js</h3>
-<p>I chose to build my site with Next.js. This won't be a surprising decision to anyone who's played with statically-rendered or server-side rendered React in recent years. Next.js is quickly eating everyone else's lunch in this market, especially Gatsby's (sorry Gatsby fans).</p>
-<p>Next.js is by far the most elegant way (for now) to do any static generation or server-side rendering with React. They just released their next-generation (pun intended) static site generator in the <a href="https://nextjs.org/blog/next-9-3">9.3 release</a> back in March. So in the spirit of using technologies <a href="https://www.youtube.com/watch?v=eBAX8MbRYFA">in the spring of their life</a>, Next.js is a no-brainer.</p>
-<p>Here's a quick breakdown of the project structure. No need to understand every piece of it; but it may be useful to refer to throughout the rest of this post.</p>
-<pre><code>.
-├── README.md
-├── public // all static files (images, etc) go here
-├── pages // every .tsx component in this dir becomes a page of the final site
-|   ├── index.tsx // the home page (which has access to the list of all blog posts)
-|   ├── blog
-|       ├── [blog].md // a template component that renders the blog posts under `/md/blog`
-├── md
-|   ├── blog
-|       ├── devii.md // this page!
-        ├── whatever.md // every MD file in this directory becomes a blog post
-├── components
-|   ├── Code.tsx
-|   ├── Markdown.tsx
-|   ├── &lt;various others&gt;
-├── loader.ts // contains utility functions for loading/parsing Markdown
-├── node_modules
-├── tsconfig.json
-├── package.json
-├── next.config.js
-├── next-env.d.ts
-├── .gitignore
-</code></pre>
-<!-- Check out the Next.js documentation [here](https://nextjs.org/docs) to make sure it's the right choice for your project. -->
-<h3 id="typescriptreact">TypeScript + React</h3>
-<p>Both React and TypeScript are baked into the DNA of Next.js, so you get these for free when you set up a Next.js project.</p>
-<p>Gatsby, on the other hand, has a special plugin for TypeScript support, but it's not officially supported and seems to be <a href="https://github.com/gatsbyjs/gatsby/issues/18983">low on their priority list</a>. Also, after messing with it for an hour I couldn't get it to play nice with hot reload.</p>
-<h3 id="markdownauthoring">Markdown authoring</h3>
-<p>Using Next's special <code>getStaticProps</code> hook and glorious <a href="https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr">dynamic imports</a>, it's trivial to a Markdown file and pass its contents into your React components as a prop. This achieves the holy grail I was searching for: the ability to easily mix React and Markdown.</p>
-<h4 id="frontmattersupport">Frontmatter support</h4>
-<p>Every Markdown file can include a "frontmatter block" containing metadata. I implemented a simple utility function (<code>loadPost</code>) that loads a Markdown file, parses its contents, and returns a TypeScript object with the following signature:</p>
-<pre><code class="ts language-ts">type PostData = {
-  path: string; // the relative URL to this page, can be used as an href
-  content: string; // the body of the MD file
-  title?: string;
-  subtitle?: string;
-  date?: number;
-  author?: string;
-  authorPhoto?: string;
-  authorTwitter?: string;
-  tags?: string[];
-  bannerPhoto?: string;
-  thumbnailPhoto?: string;
-};
-</code></pre>
-<p>I implemented a separate function <code>loadPosts</code> that loads <em>all</em> the Markdown files under <code>/md/blog</code> and returns them as an array (<code>PostData[]</code>). I use <code>loadPosts</code> on this site's home page to render a list of all posts I've written.</p>
-<h3 id="mediuminspireddesign">Medium-inspired design</h3>
-<p>I used the wonderful <a href="https://github.com/rexxars/react-markdown"><code>react-markdown</code></a> package to render Markdown as a React component. My Markdown rendered component (<code>/components/Markdown.tsx</code>) provides some default styles inspired by Medium's design. Just modify the <code>style</code> pros in <code>Markdown.tsx</code> to customize the design to your liking.</p>
-<h3 id="githubstylecodeblocks">GitHub-style code blocks</h3>
-<p>You can easily drop code blocks into your blog posts using triple-backtick syntax. Specify the programming language with a "language tag", <a href="https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks">just like GitHub</a>!</p>
-<p>To achieve this I implemented a custom <code>code</code> renderer (<code>/components/Code.tsx</code>) for <code>react-markdown</code> that uses <a href="https://github.com/conorhastings/react-syntax-highlighter#readme">react-syntax-highlighter</a> to handle the highlighting. So this:</p>
-<!-- I landed on this solution after wasting hours playing with other options. CodeMirror has bad React support (the only React wrapper for it is inauspiciously named `react-codemirror2`) and [bizarre selection issues](https://github.com/codemirror/CodeMirror/issues/1099) for `readonly` code blocks. The popular `highlight.js` project requires you to [initialize the library](https://github.com/highlightjs/highlight.js/issues/925) in `componentDidMount` like its 2015 :/  -->
-<pre><pre><code class="ts language-ts">// pretty neat huh?
-const test = (arg: string) =&gt; {
-  return arg.length &gt; 5;
-};
-</code></pre></pre>
-<p>turns into this:</p>
-<pre><code class="ts language-ts">// pretty neat huh?
-const test = (arg: string) =&gt; {
-  return arg.length &gt; 5;
-};
-</code></pre>
-<h3 id="rssfeedgeneration">RSS feed generation</h3>
-<p>An RSS feed is auto-generated from your blog post feed. This feed is generated using the <code>rss</code> module (for converting JSON to RSS format) and <code>showdown</code> for converting the markdown files to RSS-compatible HTML. The feed is generated during the build step and written as a static file to <code>/rss.xml</code> in your static assets folder. It's dead simple. That's the joy of being able to easily write custom build scripts on top of Next.js's <code>getStaticProps</code> hooks!</p>
-<h3 id="seo">SEO</h3>
-<p>Every blog post page automatically populated meta tags based on the post metadata. This includes a <code>title</code> tag, <code>meta</code> tags, <code>og:</code> tags, Twitter metadata, and a <code>link</code> tag containing the canonical URL. You can modify/augment this in the <code>PostMeta.ts</code> component.</p>
-<h3 id="staticgeneration-1">Static generation</h3>
-<p>You can generate a fully static version of your site using <code>yarn build &amp;&amp; yarn export</code>. This step is entirely powered by Next.js. The static site is exported to the <code>out</code> directory.</p>
-<p>After its generated, use your static file hosting service of choice (Firebase Hosting, Vercel, Netlify) to deploy your site.</p>
-<h3 id="insanelycustomizable">Insanely customizable</h3>
-<p>There's nothing "under the hood" here. You can view and modify all the files that provide the functionality described above. Devii just provides a project scaffold, some Markdown-loading loading utilities (in <code>loader.ts</code>), and some sensible styling defaults (especially in <code>Markdown.tsx</code>).</p>
-<p>To start customizing, modify <code>index.tsx</code> (the home page), <code>Essay.tsx</code> (the blog post template), and <code>Markdown.tsx</code> (the Markdown renderer).</p>
-<h2 id="getstarted">Get started</h2>
-<p>Head to the GitHub repo to get started: <a href="https://github.com/colinhacks/devii">https://github.com/colinhacks/devii</a>. If you like this project, leave a ⭐️star⭐️ to help more people find Devii! 😎</p>
-<p>To jump straight into the code, clone the repo and start the development server like so:</p>
-<pre><code class="bash language-bash">git clone git@github.com:colinhacks/devii.git mysite
-cd mysite
-yarn
-yarn dev
-</code></pre>]]></description><link>https://alyssaphacker.com/blog/the-ultimate-tech-stack</link><guid isPermaLink="true">https://alyssaphacker.com/blog/the-ultimate-tech-stack</guid><category><![CDATA[Static Site Generators]]></category><category><![CDATA[React]]></category><category><![CDATA[Next.js]]></category><dc:creator><![CDATA[Colin McDonnell]]></dc:creator><pubDate>Tue, 26 May 2020 03:18:56 GMT</pubDate></item><item><title><![CDATA[Devii's killer features]]></title><description><![CDATA[<p>This page is built with Devii! Check out the source code for this under <code>/md/blog/test.md</code>.</p>
-<p>Devii is a starter kit for building a personal website with the best tools 2020 has to offer.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Felipe Gustavo]]></title><description><![CDATA[I write about javascript, web apps and open source projects with focus in bring in-depth knowledge about fundamentals and technologies]]></description><link>https://felipegs.com</link><image><url>https://felipegs.com/icon.png</url><title>Felipe Gustavo</title><link>https://felipegs.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 15 Sep 2021 23:35:52 GMT</lastBuildDate><atom:link href="https://felipegs.com/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 05 Mar 2021 04:00:00 GMT</pubDate><copyright><![CDATA[2021 Felipe Gustavo]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[felipegdas07@gmail.com]]></managingEditor><webMaster><![CDATA[felipegdas07@gmail.com]]></webMaster><ttl>60</ttl><item><title><![CDATA[Some thoughts about frontend learning]]></title><description><![CDATA[<p>Everyday a great number of new people start to study programming and web development. The Front-end is one of the main areas of software development that are chosen by this people. And they have a lot of questions about what framework/library to learn, what tools to use and etc.</p>
+<p>But, if I could give an advice to them, I would say that the most important thing is to dominate the fundamental technologies of the web. Become advanced in this technologies, not just learn the basic stuff, because with this solid fundamentals, the path to learn advanced librarys, frameworks and tools will be easier than before.</p>
+<h2 id="htmlcssjavascript">HTML, CSS &amp; JAVASCRIPT</h2>
+<p>The three main Front-end technologies hide a trap. Its easy to learn the basics, but hard to learn the advanced concepts and know this advanced content will be the difference in your career as a developer.</p>
+<p>We see in great companies developers having problems making layouts with CSS, for not knowing how the box-model works; or not making the app fully accessible for not using a semantic HTML approach. And with the JavaScript this become much more important, because of the peculiarities of the language.</p>
+<h3 id="2080rule">20-80 rule</h3>
+<p>This technologies use the 20-80 rule. With 20% of the effort you will learn 80% what you need to start to work in the market. The problem is that only know the basics will make you have a lot of issues in problem solving, taking you to difficulties, bugs and errors.</p>
+<p>The big problem is that learn this other 20% requires 80% of the effort!</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>So the advice is to keep calm and go deep in the learning of this three technologies. Please, don’t underestimate the complexity of HTML, CSS and JavaScript. And understand that all that amazing frameworks, that huge number of names and tools is made with this three fundamental technologies.</p>
 <ul>
-<li><strong>Markdown-based</strong>: Just add a Markdown file to <code>/md/blog</code> to add a new post to your blog!</li>
-<li><strong>TypeScript + React</strong>: aside from the parts that are rendered Markdown, everything else is fully built with TypeScript and functional React components. Implementing any sort of interactive widget is often hard using existing Markdown-centric static-site generators, but Devii makes it easy to mix Markdown and React on the same page.</li>
-<li><strong>Frontmatter support</strong>: Every post can include a frontmatter block containing metadata: <code>title</code>, <code>subtitle</code>, <code>datePublished</code> (timestamp), <code>author</code>, <code>authorPhoto</code>, and <code>bannerPhoto</code>.</li>
-<li><strong>Medium-inspired styles</strong>: The Markdown renderer (<code>Markdown.tsx</code>) contains default styles inspired by Medium.</li>
-<li><strong>Static generation</strong>: you can generate a fully static version of your site using <code>yarn build &amp;&amp; yarn export</code>. Powered by Next.js.</li>
-<li><strong>GitHub-style code blocks</strong>: with syntax highlighting powered by <a href="https://github.com/conorhastings/react-syntax-highlighter">react-syntax-highlighter</a>. Works out-of-the-box for all programming languages. Just use Markdown's triple backtick syntax with a "language identifier", <a href="https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks">just like GitHub</a>.</li>
+<li><p>Template engines like liquid, pug, EJS and etc is converted to HTML.</p></li>
+<li><p>The pre-processors like SASS and LESS is just CSS with some other features.</p></li>
+<li><p>React, Angular, Vue is just JavaScript with some design patterns and software engineering concepts.</p></li>
 </ul>
-<pre><code class="ts language-ts">  // pretty neat huh?
-  const test: (arg: string) =&gt; boolean = (arg) =&gt; {
-    return arg.length &gt; 5;
-  };
+<p>The learning curve to this hype tools is very low if you have an advanced knowledge in the fundamentals. Here is an amazing website with a list of the topics that is nice to learn in the three technologies and a lot of others too: </p>
+<ul>
+<li><a href="https://andreasbm.github.io/web-skills/">Web Skills Website</a></li>
+</ul>]]></description><link>https://felipegs.com/blog/some-thoughts-about-frontend-learning</link><guid isPermaLink="true">https://felipegs.com/blog/some-thoughts-about-frontend-learning</guid><category><![CDATA[career]]></category><category><![CDATA[javascript]]></category><category><![CDATA[css]]></category><category><![CDATA[html]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item><item><title><![CDATA[What was the starting point for becoming a mid-level frontend engineer?]]></title><description><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>There are some turning points in our lives that change our way of viewing things and the future. One important of mine is the podcast that I heard in mid-2014 that made me take a technical computer course and brought me to this software’s world.</p>
+<p>After that, I went to college, started to work as a junior programmer and arrived at the position that I am today, as a mid-level frontend engineer.</p>
+<p>I need to make a disclaimer here: this is not a guide or something like that, it is just a little of my experiences.</p>
+<h2 id="theinitialstep">The initial step</h2>
+<p>So the year was 2019, I was working at that time as a junior frontend developer to a big corporation in Brazil. That was the first time working with a big product and I had some knowledge about React, but I didn’t have experience working in real apps and the whole frontend of that company was in React.</p>
+<p>It is important to gain knowledge and practice a lot to become faster in building things and solving problems, but this is a natural process that can be accelerated if you practice more and study a lot.</p>
+<p>But when I was a junior, all the sprints had stories that scared me, I felt like I was not capable of doing that.</p>
+<h2 id="whatwasthatfear">What was that fear?</h2>
+<p>The lack of experience was what makes everything seems harder than it actually is. This creates a fear of doing something wrong, like creating bugs on production or even in a development environment.</p>
+<p>At this point, deadlines were other terrifying stuff. Will I be able to deliver everything until the end of the sprint? Will I be able to solve this issue? Am I being a bad developer by asking help for other developers? It is normal to ask yourself this type of question, and answering them now: No, it is normal and part of the process.</p>
+<p>Another thing that I remember of that time was that I looked for the tools that I used, and as I did not really understand how that worked, they looked like magic things.</p>
+<p>At that time, I used React and Redux. Creating a reducer looked like rocket science for me. I did not understand how that was created, how that worked in reality, why I had to create a pure function and what the hell is a pure function? React looked like alien technology and so on.</p>
+<p>This causes fear too, because we fear the things that we did not understand.</p>
+<p>This point connects to the next phase.</p>
+<h2 id="turningpoint">Turning point</h2>
+<p>I was working, having to pay the bills and live, so I had time to study with less rush and stress. I followed the path that goes deeper in the base of frontend development:</p>
+<ul>
+<li><strong>CSS</strong>: I did an <a href="https://www.udemy.com/course/advanced-css-and-sass/">advanced course about CSS</a>. That teached me how css works behind the scenes, how the box-model worked, grid, flexbox and Sass. That gives me confidence in styling applications.</li>
+<li><strong>HTML</strong>: I studied about semantic HTML, HTML5 and a little about accessibility.</li>
+<li><strong>JavaScript</strong>: I read the book series “You don’t know JS”. 6 books that explain a lot about the base of the language. That changed my way to code javascript.</li>
+</ul>
+<p>The more that I studied, the more I was confident to get harder tasks at work and improve my ability to solve issues and participate in meetings.</p>
+<p>But I had a real turning point that changed a lot my behavior and my vision about programming, tools and software development.</p>
+<p>It was an <a href="https://indepth.dev/posts/1005/level-up-your-reverse-engineering-skills">in-depth blog’s article</a> that talks about reverse-engineering, the gains of doing that and a guide of how to do that. This blog taught me a lot, they had a lot of advanced and deep articles about React, and other frameworks, like Angular.</p>
+<p>Talking more about this article, after reading it, a wall of fear broke in my head.</p>
+<p>The article explains how to learn about how a library works by reading its source code and tracking the use of the library, organizing the points of study and creating an environment to use tools like devtools to do this work.</p>
+<p>Those tools, like React and Redux, that was magic for me, were shown as just a bunch of code, with great logic, patterns and structures, of course, but in the end, it is just code.</p>
+<p>Code that I can read and understand, using data structures and design patterns that I can learn and use. After reading those articles, I started to look at source codes and learned how to build software with it. </p>
+<p>I lost that fear. </p>
+<p>And the confidence with the knowledge makes me more comfortable to use that and start to help others. At work, this makes me start to take harder tasks and carry projects alone, which, in the end, made me become 
+a mid-level developer. </p>
+<p>I’m not saying that this path is simple or something like ‘read this article and you will become a mid-level developer in a few months’. This is not so simple, and getting a promotion does not even mean that you really achieve a higher level of experience and knowledge.</p>
+<p>But the whole point of this post is to recommend the in-depth article, and try to bring this point of view, that it is not something that we saw in other places.</p>
+<p>Here in dev.to and other tech publications we saw a lot of the same type of content. A huge number of beginner's guides of technologies, the same discussions and explanations of the same topic. But how many times have you seen an extensive and deep post explaining how a library or framework works behind the scenes?</p>
+<p>Look at a big codebase and understand that at the point of being able to write and explain that is not simple. It is hard to do, takes a lot of time, but can be rewarding:</p>
+<ul>
+<li>Having in-depth knowledge about a library can make you an expert on that and maybe become a specialist.</li>
+<li>You can contribute with that project and that can bring opportunities to you in the future. </li>
+<li>You can create advanced content about that, a type of content that we do not have in a good number.</li>
+</ul>
+<h3 id="researchsource">Research source:</h3>
+<ul>
+<li><a href="https://indepth.dev/posts/1005/level-up-your-reverse-engineering-skills">Level Up Your Reverse Engineering Skills</a></li>
+<li><a href="https://indepth.dev/posts/1006/practical-application-of-reverse-engineering-guidelines-and-principles">Practical application of reverse-engineering guidelines and principles</a></li>
+</ul>]]></description><link>https://felipegs.com/blog/starting-point-to-become-mid-level</link><guid isPermaLink="true">https://felipegs.com/blog/starting-point-to-become-mid-level</guid><category><![CDATA[career]]></category><category><![CDATA[javascript]]></category><category><![CDATA[css]]></category><category><![CDATA[experience]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item><item><title><![CDATA[Understanding how the redux data flow really works]]></title><description><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>Redux is one of the most used state management libraries available today for web applications. Most of the developers use that, but did not know how it works behind the scenes.</p>
+<p>Some time ago I decided to read the Redux codebase, to better understand the implementation of the library that I used in some jobs. In this work, I did some notes, and this article is a more complete version of that.</p>
+<p><strong>Disclaimer</strong>: This article tries to be a deep dive into Redux. It is not a tutorial and it requires a basic knowledge about Redux, the idea here is to understand the internals and not teach how to use.</p>
+<h2 id="dataflow">Dataflow</h2>
+<p>The data flow of Redux is the base of the library. It is one of the first things that we learn when we start to study Redux.</p>
+<p>You dispatch an action, that is a plain object, to the store. This updates the state using the reducer function and this new state returns to the application, updating the UI.</p>
+<p><img src="./assets/redux-data-flow.gif" alt="alt text" title="Redux data flow diagram, showing store, reducer, state and event handler and dispatch blocks interacting" /></p>
+<p>One important thing to understand here is the architecture of Redux. It consists of the core that handles the basic features, such as dispatch actions, update the store and notify the state updates.</p>
+<p>Another part is the bindings, the most popular one that is supported by the Redux core team is the React one, called react-redux. This module connects the Redux core to react applications, creating HOC and Hooks that the react developers use to develop the UIs in the end.</p>
+<p>Our focus in this article will be the Redux core. Mainly, the store object. There is the place where the state tree is created and where it is provided the <code>dispatch</code> and <code>subscribe</code> methods. The both are the most important methods to Redux data flow work.</p>
+<p>To create the store, you have a function called <code>createStore</code>. This function accepts 3 arguments: </p>
+<ul>
+<li>the reducer function.</li>
+<li>the preloaded state object or most known as <strong>initialState</strong>. This is useful for universal apps or SSR applications, because it allows the user to add a first state before the hydration process. Another use for this is when some library stores the state in local storage and reloads the state in the next section.</li>
+<li>the enhancer (this is the argument that allows the use of middlewares, and will be the theme of another article).</li>
+</ul>
+<p>In the creation of the store, the function does a lot of verifications to see if the reducer passed is really a function and if the preloadedState is a real object.</p>
+<pre><code class="javascript language-javascript">if (
+    (typeof preloadedState === 'function' &amp;&amp; typeof enhancer === 'function') ||
+    (typeof enhancer === 'function' &amp;&amp; typeof arguments[3] === 'function')
+  ) {
+    throw new Error(
+      'It looks like you are passing several store enhancers to ' +
+        'createStore(). This is not supported. Instead, compose them ' +
+        'together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.'
+    )
+  }
+
+  if (typeof preloadedState === 'function' &amp;&amp; typeof enhancer === 'undefined') {
+    enhancer = preloadedState as StoreEnhancer&lt;Ext, StateExt&gt;
+    preloadedState = undefined
+  }
+
+  if (typeof reducer !== 'function') {
+    throw new Error(
+      `Expected the root reducer to be a function. Instead, received: '${kindOf(
+        reducer
+      )}'`
+    )
+  }
+</code></pre>
+<p>Then, the function returns the store object.</p>
+<p>Internally, they create some important variables, these variables work as properties of the store object.</p>
+<pre><code class="typescript language-typescript">let currentReducer = reducer
+let currentState = preloadedState as S
+let currentListeners: (() =&gt; void)[] | null = []
+let nextListeners = currentListeners
+let isDispatching = false
 </code></pre>
 <ul>
-<li><strong>Utterly customizable</strong>: We provide a minimal interface to get you started, but you can customize every aspect of the rendering and styling by just modifying <code>index.tsx</code> (the home page), <code>BlogPost.tsx</code> (the blog post template), and <code>Markdown.tsx</code> (the Markdown renderer). And of course you can add entirely new pages as well!</li>
+<li><strong>currentReducer</strong>: this variable receives the reducer function argument, that will be used to create the new state.  </li>
+<li><strong>currentState</strong>: this variable will keep the state itself, it starts receiving the </li>
+<li><strong>preloadedState</strong>, but can be updated by other methods.
+currentListeners: this variable keeps the array of listeners, that is callback functions that are executed when the state is updated. (we will dive deep into this topic later in this article).</li>
+<li><strong>nextListeners</strong>: this variable works as a temporary list to new listeners, to avoid some bugs when new listeners when a dispatch or notify work is in progress.</li>
 </ul>
-<p>Head to the GitHub repo to get started: <a href="https://github.com/colinhacks/devii">https://github.com/colinhacks/devii</a>. If you like this project, leave a ⭐️star⭐️ to help more people find Devii 😎</p>]]></description><link>https://alyssaphacker.com/blog/devii</link><guid isPermaLink="true">https://alyssaphacker.com/blog/devii</guid><category><![CDATA[Devii]]></category><category><![CDATA[Blogs]]></category><dc:creator><![CDATA[Ben Bitdiddle]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item></channel></rss>
+<h2 id="isdispatchingflag">isDispatching FLAG</h2>
+<p>The redux library has a lot of verifications, but one appears a lot of times: this is the verification of <code>isDispatching</code>. The idea of that is to prevent changes on the variables when the dispatch function is being called. The point is to prevent bugs with changes being made on the execution.</p>
+<p>The default value is false. The value is changed to true inside the try that updates the state. At that moment, if other methods as <code>getState</code>, <code>subscribe</code>, <code>unsubscribe</code>, <code>dispatch</code> are called, this function has verifications that throw an error, warning that these methods can not be executed correctly at that time.</p>
+<p>See an example of isDispatching verification below:</p>
+<pre><code class="javascript language-javascript">if (isDispatching) {
+  throw new Error(
+  'You may not call store.getState() while the reducer is executing. ' +
+      'The reducer has already received the state as an argument. ' +
+      'Pass it down from the top reducer instead of reading it from the store.'
+  )
+}
+</code></pre>
+<p>Returning to the dataflow, it can be divided in 2 big parts:</p>
+<ul>
+<li><strong>Dispatch</strong> action and update state.</li>
+<li><strong>Notify</strong> state change to subscribers.</li>
+</ul>
+<h2 id="dispatch">Dispatch</h2>
+<p>As shown on this basic example of Redux Documentation (https://redux.js.org/introduction/getting-started#basic-example), after using <code>createStore</code> and having the store object available, the way to dispatch an action is to call the <code>dispatch</code> method.</p>
+<pre><code class="typescript language-typescript">function dispatch(action: A) {
+  if (!isPlainObject(action)) {
+    throw new Error(
+      `Actions must be plain objects. Instead, the actual type was: '${kindOf(
+        action
+      )}'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.`
+    )
+  }
+
+  if (typeof action.type === 'undefined') {
+    throw new Error(
+      'Actions may not have an undefined "type" property. You may have misspelled an action type string constant.'
+    )
+  }
+
+  if (isDispatching) {
+    throw new Error('Reducers may not dispatch actions.')
+  }
+
+  try {
+    isDispatching = true
+    currentState = currentReducer(currentState, action)
+  } finally {
+    isDispatching = false
+  }
+
+  const listeners = (currentListeners = nextListeners)
+  for (let i = 0; i &lt; listeners.length; i++) {
+    const listener = listeners[i]
+    listener()
+  }
+
+  return action
+}
+</code></pre>
+<p>The dispatch method is a simple function with only one objective, <strong>update the state</strong>.</p>
+<p>It receives a plain object as an argument called action. It is mandatory to have a property called <code>type</code> on the action, this <code>type</code> will be used on the reducer to identify the script that will create a new version of state. To make sure that an action used on the <code>dispatch</code> call follows these rules, Redux does some verifications with the action argument.</p>
+<pre><code class="typescript language-typescript">if (!isPlainObject(action)) {
+  throw new Error(
+    `Actions must be plain objects. Instead, the actual type was: '${kindOf(
+      action
+    )}'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.`
+  )
+}
+
+if (typeof action.type === 'undefined') {
+  throw new Error(
+    'Actions may not have an undefined "type" property. You may have misspelled an action type string constant.'
+  )
+}
+</code></pre>
+<p>Basically, it verifies if the action is a plain object, calling a util function called <code>isPlainObject</code>. Then, it verifies if the action object has a <code>type</code> property and if it is <code>undefined</code>. In these cases, they throw Errors to warn the user.</p>
+<pre><code class="javascript language-javascript">try {
+  isDispatching = true
+  currentState = currentReducer(currentState, action)
+} finally {
+  isDispatching = false
+}
+</code></pre>
+<p>After the verifications, they do a try statement to update the state. First, they update the isDispatching flag to true (as we explained above), and then, they call the reducer function passing the last version of the state variable and the action object.</p>
+<p>The reducer will get the type of the action and based on that, will create a new version of the state. Then, they return this new state and that is assigned to the <code>currentState</code> variable.</p>
+<p>This part of the code is inside a try statement, so basically, if the reducer function throws any error, this does not break the redux work. This makes the code safer on runtime. Finally, they update the <code>isDispatching</code> to false, to maintain that work of the <code>isDispatching</code> flag verifications.</p>
+<p>Another important point here, that explains the reason that Redux documentation says that the reducer function has to be a pure function, can be understood here. As you can see, Redux uses a simple variable to hold the state and use this variable as argument to the reducer function. </p>
+<p>As the state is an object, it is a reference pointer, so if you mutate the argument on the reducer function, you mutate the <code>currentState</code> variable that is inside the store. And as the return of the reducer will be assigned to the <code>currentState</code> variable, if you mutate that, will basically set to the same reference that was assigned before.</p>
+<p>It generates some issues as:</p>
+<ul>
+<li>Break time-travel features because all state changes, that should create different state ‘versions’, will be always the same, with the same content.</li>
+<li>Can cause bugs related with the huge number of mutations and reassign to the same reference at the same time.</li>
+<li>Can impact on changes verification, because some libraries, such as react-redux, for example, use shallow equality as the way to compare changes, as shallow equality relies on reference comparison, sometimes the state changed, but will not cause updates and re-renders.</li>
+</ul>
+<p>After all this state update, they need to run the listeners to notify the subscribers that the state changed. We will talk more about this in the next section.</p>
+<h2 id="notify">Notify</h2>
+<p>The notification process of Redux is made by the method called <code>subscribe</code>. It is basically an observer design pattern, this method allows adding a listener function that is executed after a state update.</p>
+<p><img src="./assets/observer-pattern.png" alt="alt text" title="Observer pattern diagram showing the Subject connect with a lot of Observer blocks" /></p>
+<p>We can see the hole code of the <code>subscribe</code> method below:</p>
+<pre><code class="typescript language-typescript">function subscribe(listener: () =&gt; void) {
+  if (typeof listener !== 'function') {
+    throw new Error(
+      `Expected the listener to be a function. Instead, received: '${kindOf(
+        listener
+      )}'`
+    )
+  }
+
+  if (isDispatching) {
+    throw new Error(
+      'You may not call store.subscribe() while the reducer is executing. ' +
+        'If you would like to be notified after the store has been updated, subscribe from a ' +
+        'component and invoke store.getState() in the callback to access the latest state. ' +
+        'See https://redux.js.org/api/store#subscribelistener for more details.'
+    )
+  }
+
+  let isSubscribed = true
+
+  ensureCanMutateNextListeners()
+  nextListeners.push(listener)
+
+  return function unsubscribe() {
+    if (!isSubscribed) {
+      return
+    }
+
+    if (isDispatching) {
+      throw new Error(
+        'You may not unsubscribe from a store listener while the reducer is executing. ' +
+          'See https://redux.js.org/api/store#subscribelistener for more details.'
+      )
+    }
+
+    isSubscribed = false
+
+    ensureCanMutateNextListeners()
+    const index = nextListeners.indexOf(listener)
+    nextListeners.splice(index, 1)
+    currentListeners = null
+  }
+}
+</code></pre>
+<p>In the subscribe method, first, it is made 2 basic verifications, one for the <code>isDispatching</code> and another to the listener argument, verifying if the type of the argument is really a function, to make sure that it will not break when it is called on state changes.</p>
+<p>Then, it came to the main point of this function: <strong>add a new listener as a subscriber</strong>.</p>
+<pre><code class="typescript language-typescript">let isSubscribed = true
+
+ensureCanMutateNextListeners()
+
+nextListeners.push(listener)
+</code></pre>
+<p>To do that, first they create a variable called <code>isSubscribed</code> assigning to true. The idea of this variable is to keep the internal state of that listener on the subscribers array, if it is there or not. It is important to notice that the return of the <code>subscribe</code> function is an <code>unsubscribe</code> function.</p>
+<p>So, using the concept of closure, this variable <code>isSubscribed</code> is held in this <code>unsubscribe</code> function. The idea is use this variable as a verification, if the listener is subscribed, the function executes the work to remove this listener from the array, if not, then do nothing.</p>
+<pre><code class="typescript language-typescript">return function unsubscribe() {
+  if (!isSubscribed) {
+    return
+  }
+...
+</code></pre>
+<p>Besides that, other 2 functions are executed: </p>
+<ul>
+<li>One called <code>ensureCanMutateNextListeners</code></li>
+<li>The push of the <code>nextListeners</code> array, that actually adds the listener to be executed in the future.</li>
+</ul>
+<p>About the <code>ensureCanMutateNextListeners</code>:</p>
+<pre><code class="typescript language-typescript">function ensureCanMutateNextListeners() {
+  if (nextListeners === currentListeners) {
+    nextListeners = currentListeners.slice()
+  }
+}
+</code></pre>
+<p>To understand this function, we need to understand the difference between currentListeners and nextListeners.</p>
+<ul>
+<li><code>currentListeners</code>: is the variable that keeps the listeners that are being executed or that were executed on runtime.</li>
+<li><code>nextListeners</code>: is the variable that keeps the next version of listeners to be executed. This is the variable that gives the push on the subscribe function, to add a new listener. On the dispatch function, after the state update, the currentListener receives the reference of nextListeners, so if there are new listeners, they will be executed.</li>
+</ul>
+<p>The point of this function is that after the dispatch, the <code>nextListeners</code> and <code>currentListeners</code> are basically the same, pointing to the same reference. The issue is that if we just give a push to <code>nextListeners</code>, we are affecting the <code>currentListeners</code> variable and if a dispatch is happening at that moment, it can cause bugs.</p>
+<p>To avoid that, they created this <code>ensureCanMutateNextListeners</code> function.The idea is just do a shallow copy of <code>currentListeners</code>, creating a new reference. This way, if we update <code>nextListeners</code>, we do not affect <code>currentListeners</code>.</p>
+<p>Finally, to close the notify process, on <code>dispatch</code> function, after the state update, all the actual listeners callbacks are called.</p>
+<pre><code class="typescript language-typescript">const listeners = (currentListeners = nextListeners)
+
+for (let i = 0; i &lt; listeners.length; i++) {
+  const listener = listeners[i]
+  listener()
+}
+</code></pre>
+<p>As explained above, the currentListeners receive the nextListeners reference and this is assigned in the listeners variable. Then, they use a simple for loop to call all the listeners. This way, redux notifies all subscribers that a state update happened.</p>
+<h2 id="getstate">Get state</h2>
+<p>Imagine that a subscriber is called after a state update and wants to use the new state on the UI. How to do this? There is a function called <code>getState</code>.</p>
+<pre><code class="typescript language-typescript">function getState(): S {
+  if (isDispatching) {
+    throw new Error(
+      'You may not call store.getState() while the reducer is executing. ' +
+        'The reducer has already received the state as an argument. ' +
+        'Pass it down from the top reducer instead of reading it from the store.'
+    )
+  }
+
+  return currentState as S
+}
+</code></pre>
+<p>This function is the simplest of the entire library. A basic verification about the <code>isDispatching</code> is executed and after that, it is just returned the <code>currentState</code> variable.</p>
+<h3 id="researchsource">Research source:</h3>
+<ul>
+<li><a href="https://redux.js.org/tutorials/essentials/part-2-app-structure#reducers-and-immutable-updates">Redux Essentials Docs: Reducers and Immutable Updates</a></li>
+<li><a href="https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow">Redux Fundamentals Docs: Data Flow</a></li>
+<li><a href="https://github.com/reduxjs/redux/blob/master/src/createStore.ts">Redux source code on master v4.1.1</a></li>
+</ul>]]></description><link>https://felipegs.com/blog/under-the-hood-of-redux-data-flow</link><guid isPermaLink="true">https://felipegs.com/blog/under-the-hood-of-redux-data-flow</guid><category><![CDATA[javascript]]></category><category><![CDATA[redux]]></category><category><![CDATA[in-depth]]></category><category><![CDATA[immutability]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item><item><title><![CDATA[Understanding BEMCSS]]></title><description><![CDATA[<p>When the use of CSS is no longer just the stylization of personal websites or small projects and moves to large, scalable and complex projects, there is a need to organize and think about the architecture for the CSS. Simple things like class naming can become a huge problem in future maintenance.</p>
+<p>To correct problems like these, organizational architectures and methodologies were created and one of the most popular is BEMCSS.</p>
+<h4 id="sumrio">Sumário:</h4>
+<p><a href="#O-que-é">O que é?</a><br />
+<a href="#Block">Block</a><br />
+<a href="#Element">Element</a><br />
+<a href="#Modifier">Modifier</a><br />
+<a href="#Uma-nova-forma-de-pensar-CSS">Uma nova forma de pensar CSS</a><br />
+<a href="#Conclusao">Conclusão</a><br />
+<a href="#Fontes">Fontes</a> </p>
+<h2 id="oque">O que é?</h2>
+<p>The acronym comes from Block-Element-Modifier, which is the way designated to create names for the classes. The idea is to create a rigid standard for class naming, making it easy to read and understand what the class does and what component it targets.
+The class names follow the line:</p>
+<pre><code class="css language-css">.block__element--modifier {}
+</code></pre>
+<p>Two underlines that separate the block from the element and two lines that separate the element from the modifier.</p>
+<h2 id="block">Block:</h2>
+<p>The Block is the element or component that that class is assigned to. You don't need to respect the name of the element, the idea is that it describes what the component is in the scope of the project. For example, if you create a class for a login form, the name would not be .form, even though in HTML you do create a form.</p>
+<p>In the scope of the project the class could be **. Login **, which would make it clear to everyone what it is about. A general naming rule is to separate compound names with a single dash, for example, **. Formulario-de-cadastr ** would be the correct way to write a name with three words</p>
+<h2 id="element">Element:</h2>
+<p>The Element are internal parts of the component. In the example used above, inside the login block there would be at least two inputs for the username or email, password and an action button.</p>
+<p>The appointment of these elements would be:</p>
+<pre><code class="css language-css">.login__email {}
+.login__password {}
+.login__button {}
+</code></pre>
+<h2 id="modifier">Modifier:</h2>
+<p>The modifier usually applies to changes and varied shapes for the elements or for the block itself as a whole. In the example of the article, when the user put something that does not match the password or email in the inputs and there was a check to confirm this, the visual feedback of the error, for example, could be done by changing the colors of the edges of the incorrect inputs to red.</p>
+<p>The modifier class would be used to create this, being used in this way:</p>
+<pre><code class="css language-css">.login__email--error {}
+</code></pre>
+<p>The modifiers can also be used for the block as a whole, and can be applied directly over it in the class, ignoring the existence of the elements. For example:</p>
+<pre><code class="css language-css">.login--error {}
+</code></pre>
+<p>Remembering that each element has its class in an isolated way. For example, if an element has another element within it, it is not correct to join the elements into a single class, such as:</p>
+<pre><code class="css language-css">.bloco__elemento1__elemento2__elemento3 {}
+</code></pre>
+<p>In these cases each element has its own class, ignoring the order of the HTML structure</p>
+<pre><code class="css language-css">.bloco {}
+.bloco__elemento1 {}
+.bloco__elemento2 {}
+.bloco__elemento3 {}
+</code></pre>
+<h2 id="anewwayofthinkingcss">A new way of thinking CSS:</h2>
+<p>When using a methodology like BEM, it is interesting to think that you are not just naming classes in a standard way. It is important to rethink how to create the elements, thinking about the layout in a modular way, separating each piece into components, which would correspond to the blocks, elements and so on.</p>
+<p>Separating the layout in this way, the creation of the code itself becomes more organized. Using BEM is just the way to formalize this new structure.
+It is important to note that BEM is a highly flexible methodology, adapting and fitting in several different CSS project architectures, another very positive point</p>
+<h2 id="conclusion">Conclusion:</h2>
+<p>The methodology is simple, but very functional and useful in the day-to-day development, in addition to being something that is often requested in job openings in the current market. Creating a scalable and quality CSS avoids rework and increases the quality of a software, therefore, it is an increasingly required skill in high-level projects.</p>
+<h3 id="researchsource">Research source:</h3>
+<ul>
+<li><a href="http://getbem.com/">getbem</a></li>
+</ul>]]></description><link>https://felipegs.com/blog/understanding-bemcss</link><guid isPermaLink="true">https://felipegs.com/blog/understanding-bemcss</guid><category><![CDATA[CSS3]]></category><category><![CDATA[Begginer]]></category><category><![CDATA[Architecture]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item></channel></rss>

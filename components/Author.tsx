@@ -1,6 +1,12 @@
 import React from 'react';
 import { format } from 'fecha';
-import { PostData } from '../loader';
+import { globals } from '../globals';
+
+type Author = {
+  title: string;
+  description?: string;
+  date?: number;
+};
 
 export const FollowButton = () => {
   return (
@@ -10,38 +16,44 @@ export const FollowButton = () => {
   );
 };
 
-export const Author: React.FC<{ post: PostData }> = (props) => {
+export const Author = ({ title, description, date }: Author) => {
   return (
     <div className="author-container">
       <div className="author">
-        {props.post.authorPhoto && (
-          <img src={props.post.authorPhoto} className="author-image" />
+        {globals.authorPhoto && (
+          <img src={globals.authorPhoto} className="author-image" />
         )}
-        <AuthorLines post={props.post} />
+        <AuthorLines title={title} description={description} date={date} />
       </div>
     </div>
   );
 };
 
-export const AuthorLines: React.FC<{ post: PostData }> = (props) => {
+export const AuthorLines = ({ title, description, date }: Author) => {
   return (
     <div>
       <p className="author-line">
-        {props.post.author && <span>{props.post.author}</span>}
+        {title && <span>{title}</span>}
+        {globals.yourName && <a
+              href={`https://twitter.com/${globals.twitterHandle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="special-link"
+            >{globals.yourName}</a>}
 
-        {props.post.authorTwitter && (
+        {/* {props.post.authorTwitter && (
           <span>
             {' '}
             <a
               href={`https://twitter.com/${props.post.authorTwitter}`}
             >{`@${props.post.authorTwitter}`}</a>{' '}
           </span>
-        )}
+        )}*/}
       </p>
       <p className="author-line subtle">
-        {props.post.datePublished
-          ? format(new Date(props.post.datePublished), 'MMMM Do, YYYY')
-          : ''}
+        {date
+          ? format(new Date(date), 'MMMM Do, YYYY')
+          : description}
       </p>
     </div>
   );

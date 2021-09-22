@@ -19,7 +19,7 @@ export const BlogPost: React.FunctionComponent<{ post: PostData }> = ({
         {title && <h1>{title}</h1>}
         {subtitle && <h2>{subtitle}</h2>}
         <br />
-        <Author post={post} />
+        <Author title="by " date={post.datePublished} />
       </div>
 
       <div className="blog-post-content wrapper">

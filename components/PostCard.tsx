@@ -6,7 +6,6 @@ import { Tag } from './Tag';
 export const PostCard: React.FC<{ post: PostData, complete: boolean }> = (props) => {
   const post = props.post;
   return (
-    <a className="post-card" href={`/${post.path}`}>
       <div className="post-card-inner">
         {/* {post.thumbnailPhoto && (
           <div
@@ -15,7 +14,9 @@ export const PostCard: React.FC<{ post: PostData, complete: boolean }> = (props)
           />
         )} */}
         <div className="post-card-title">
-          {post.title && <h2>{post.title}</h2>}
+          <a className="post-card" href={`/${post.path}`}>
+            {post.title && <h2>{post.title}</h2>}
+          </a>
           {post.subtitle && <p>{post.subtitle}</p>}
           <strong className="post-card-date">
             {props.post.datePublished
@@ -28,6 +29,5 @@ export const PostCard: React.FC<{ post: PostData, complete: boolean }> = (props)
             </div>
         </div>
       </div>
-    </a>
   );
 };

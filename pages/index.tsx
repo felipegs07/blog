@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { generateRSS } from '../rssUtil';
-import { Markdown } from '../components/Markdown';
 import { PostData, loadBlogPosts, loadMarkdownFile } from '../loader';
 import { PostCard } from '../components/PostCard';
+import { Author } from '../components/Author';
 
 type Props = {
   introduction: string;
@@ -12,37 +12,46 @@ type Props = {
 };
 
 const Home = (props: Props) => {
-  const renderLastPosts = (posts: PostData[]) => {
-    let lastPosts = []
+  // const renderLastPosts = (posts: PostData[]) => {
+  //   let lastPosts = []
 
-    for (let i = 0; i < 3; i++) {
-      lastPosts.push(<PostCard complete={false} post={posts[i]} key={i} />)
-    }
+  //   for (let i = 0; i < 3; i++) {
+  //     lastPosts.push(<PostCard complete={false} post={posts[i]} key={i} />)
+  //   }
 
-    return lastPosts;
-  };
+  //   return lastPosts;
+  // };
 
   return (
-    <div className="content">
-      <Head>
-        <title>Home</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <div className="introduction">
-        <h1>hello good people ✌</h1>
-        <Markdown source={props.introduction} />
-      </div>
-
-      <div className="section">
-        <h2>last blog posts</h2>
-        <div>
-          {
-            renderLastPosts(props.posts)
-          }
+    <>
+      <div className="blog-post">
+        <div className="blog-post-title wrapper box">
+          <Author 
+            title="personal blog by " 
+            description="here I post thoughts, experiences and in-depth tech articles"
+          />
         </div>
       </div>
-    </div>
+      <div className="content">
+        <Head>
+          <title>Home - A blog by Felipe Gustavo</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        {/* <div className="introduction">
+          <h1>hello good people ✌</h1>
+          <Markdown source={props.introduction} />
+        </div> */}
+        <div className="section">
+          <h2>last blog posts</h2>
+          <div>
+            { props.posts.map((post, j) => {
+                return <PostCard complete={false} post={post} key={j} />;
+            })}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

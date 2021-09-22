@@ -1,10 +1,8 @@
 ---
 title: Understanding BEMCSS
 subtitle: Architecture for CSS? Oh yes!
-datePublished: 1589064522569
+datePublished: 1573953182000
 published: true
-lang: en
-icon: "fab fa-css3-alt"
 tags:
 - CSS3
 - Begginer
@@ -14,16 +12,7 @@ tags:
 When the use of CSS is no longer just the stylization of personal websites or small projects and moves to large, scalable and complex projects, there is a need to organize and think about the architecture for the CSS. Simple things like class naming can become a huge problem in future maintenance.
 
 To correct problems like these, organizational architectures and methodologies were created and one of the most popular is BEMCSS.
-#### Sumário:
-[O que é?](#O-que-é)  
-[Block](#Block)  
-[Element](#Element)  
-[Modifier](#Modifier)  
-[Uma nova forma de pensar CSS](#Uma-nova-forma-de-pensar-CSS)  
-[Conclusão](#Conclusao)  
-[Fontes](#Fontes) 
-
-## O que é?
+## What is it?
 
 The acronym comes from Block-Element-Modifier, which is the way designated to create names for the classes. The idea is to create a rigid standard for class naming, making it easy to read and understand what the class does and what component it targets.
 The class names follow the line:

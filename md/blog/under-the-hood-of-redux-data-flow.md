@@ -1,9 +1,8 @@
 ---
 title: Understanding how the redux data flow really works
 subtitle: Looking into the source code itself
-datePublished: 1589064522569
+datePublished: 1629421982000
 published: true
-lang: en
 tags: 
     - javascript
     - redux
@@ -25,7 +24,7 @@ The data flow of Redux is the base of the library. It is one of the first things
 
 You dispatch an action, that is a plain object, to the store. This updates the state using the reducer function and this new state returns to the application, updating the UI.
 
-![alt text](./assets/redux-data-flow.gif "Redux data flow diagram, showing store, reducer, state and event handler and dispatch blocks interacting")
+!["Redux data flow diagram, showing store, reducer, state and event handler and dispatch blocks interacting"](/img/redux-data-flow.gif)
 
 One important thing to understand here is the architecture of Redux. It consists of the core that handles the basic features, such as dispatch actions, update the store and notify the state updates.
 
@@ -199,7 +198,7 @@ After all this state update, they need to run the listeners to notify the subscr
 
 The notification process of Redux is made by the method called `subscribe`. It is basically an observer design pattern, this method allows adding a listener function that is executed after a state update.
 
-![alt text](./assets/observer-pattern.png "Observer pattern diagram showing the Subject connect with a lot of Observer blocks")
+![Observer pattern diagram showing the Subject connect with a lot of Observer blocks](/img/observer-pattern.png)
 
 We can see the hole code of the `subscribe` method below:
 

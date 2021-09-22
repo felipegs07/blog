@@ -8,15 +8,11 @@ export namespace globals {
   export const email = 'felipegdas07@gmail.com';
   export const url = 'https://felipegs.com';
   export const accentColor = '#7b78ff';
-  export const googleAnalyticsId = ``; // e.g. 'UA-999999999-1'
+  export const googleAnalyticsId = 'UA-134641527-1'; // e.g. 'UA-999999999-1'
   export const siteLinks = [
     {
       name: 'about',
       path: 'https://www.linkedin.com/in/felipegustavos/'
-    },
-    {
-      name: 'blog',
-      path: '/blog'
     },
     {
       name: 'portfolio',

@@ -1,9 +1,9 @@
 ---
 title: Some thoughts about frontend learning
 subtitle: or how the fundamentals are the most important thing to learn
-datePublished: 1589064522569
+datePublished: 1589418782000
+
 published: true
-lang: en
 tags:
     - career
     - javascript
@@ -13,7 +13,7 @@ tags:
 
 Everyday a great number of new people start to study programming and web development. The Front-end is one of the main areas of software development that are chosen by this people. And they have a lot of questions about what framework/library to learn, what tools to use and etc.
 
-But, if I could give an advice to them, I would say that the most important thing is to dominate the fundamental technologies of the web. Become advanced in this technologies, not just learn the basic stuff, because with this solid fundamentals, the path to learn advanced librarys, frameworks and tools will be easier than before.
+But, if I could give an advice to them, I would say that the most important thing is to dominate the fundamental technologies of the web. Become advanced in this technologies, not just learn the basic stuff, because with this solid fundamentals, the path to learn advanced libraries, frameworks and tools will be easier than before.
 
 ## HTML, CSS & JAVASCRIPT
 

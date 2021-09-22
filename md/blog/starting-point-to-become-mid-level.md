@@ -1,9 +1,8 @@
 ---
 title: What was the starting point for becoming a mid-level frontend engineer?
 subtitle: "TLDR: read in-depth blog. Really, it is awesome"
-datePublished: 1589064522569
+datePublished: 1630890782000
 published: true
-lang: en
 tags: 
     - career
     - javascript

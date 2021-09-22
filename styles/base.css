@@ -105,6 +105,11 @@ a:hover {
   color: #7b78ff;
 }
 
+.special-link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
 /* page sections */
 .container {
   display: flex;
@@ -128,6 +133,14 @@ a:hover {
 
 .wrapper {
   width: 100%;
+}
+
+.header-wrapper {
+  width: 100%;
+}
+
+.box {
+  max-width: 750px;
 }
 
 .header, .footer {
@@ -301,6 +314,11 @@ hr {
   padding: 0px 10px;
 }
 
+.blog-post-content img {
+  width: 100%;
+  max-width: 100%;
+}
+
 .follow-button {
   display: inline-block;
   border: 1px solid #7b78ff;
@@ -319,6 +337,7 @@ hr {
   background-color: #dddddd;
   color: #333333;
   margin-right: 7px;
+  margin-bottom: 5px;
   box-shadow: 0px 1px 1px #00000030;
 }
 
@@ -333,12 +352,16 @@ hr {
 
 .post-card {
   text-decoration: inherit;
-  color: inherit;
+  color: #7b78ff;
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /*height: 300px;*/
+}
+
+.post-card:hover {
+  color:#43428a
 }
 
 .post-card-inner {
@@ -392,5 +415,8 @@ hr {
 @media only screen and (min-width: 600px) {
   .wrapper {
     width: 60%;
+  }
+  .header-wrapper {
+    width: 65%;
   }
 }

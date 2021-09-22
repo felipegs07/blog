@@ -1,22 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Felipe Gustavo]]></title><description><![CDATA[I write about javascript, web apps and open source projects with focus in bring in-depth knowledge about fundamentals and technologies]]></description><link>https://felipegs.com</link><image><url>https://felipegs.com/icon.png</url><title>Felipe Gustavo</title><link>https://felipegs.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 15 Sep 2021 23:35:52 GMT</lastBuildDate><atom:link href="https://felipegs.com/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 05 Mar 2021 04:00:00 GMT</pubDate><copyright><![CDATA[2021 Felipe Gustavo]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[felipegdas07@gmail.com]]></managingEditor><webMaster><![CDATA[felipegdas07@gmail.com]]></webMaster><ttl>60</ttl><item><title><![CDATA[Some thoughts about frontend learning]]></title><description><![CDATA[<p>Everyday a great number of new people start to study programming and web development. The Front-end is one of the main areas of software development that are chosen by this people. And they have a lot of questions about what framework/library to learn, what tools to use and etc.</p>
-<p>But, if I could give an advice to them, I would say that the most important thing is to dominate the fundamental technologies of the web. Become advanced in this technologies, not just learn the basic stuff, because with this solid fundamentals, the path to learn advanced librarys, frameworks and tools will be easier than before.</p>
-<h2 id="htmlcssjavascript">HTML, CSS &amp; JAVASCRIPT</h2>
-<p>The three main Front-end technologies hide a trap. Its easy to learn the basics, but hard to learn the advanced concepts and know this advanced content will be the difference in your career as a developer.</p>
-<p>We see in great companies developers having problems making layouts with CSS, for not knowing how the box-model works; or not making the app fully accessible for not using a semantic HTML approach. And with the JavaScript this become much more important, because of the peculiarities of the language.</p>
-<h3 id="2080rule">20-80 rule</h3>
-<p>This technologies use the 20-80 rule. With 20% of the effort you will learn 80% what you need to start to work in the market. The problem is that only know the basics will make you have a lot of issues in problem solving, taking you to difficulties, bugs and errors.</p>
-<p>The big problem is that learn this other 20% requires 80% of the effort!</p>
-<h3 id="conclusion">Conclusion</h3>
-<p>So the advice is to keep calm and go deep in the learning of this three technologies. Please, don’t underestimate the complexity of HTML, CSS and JavaScript. And understand that all that amazing frameworks, that huge number of names and tools is made with this three fundamental technologies.</p>
-<ul>
-<li><p>Template engines like liquid, pug, EJS and etc is converted to HTML.</p></li>
-<li><p>The pre-processors like SASS and LESS is just CSS with some other features.</p></li>
-<li><p>React, Angular, Vue is just JavaScript with some design patterns and software engineering concepts.</p></li>
-</ul>
-<p>The learning curve to this hype tools is very low if you have an advanced knowledge in the fundamentals. Here is an amazing website with a list of the topics that is nice to learn in the three technologies and a lot of others too: </p>
-<ul>
-<li><a href="https://andreasbm.github.io/web-skills/">Web Skills Website</a></li>
-</ul>]]></description><link>https://felipegs.com/blog/some-thoughts-about-frontend-learning</link><guid isPermaLink="true">https://felipegs.com/blog/some-thoughts-about-frontend-learning</guid><category><![CDATA[career]]></category><category><![CDATA[javascript]]></category><category><![CDATA[css]]></category><category><![CDATA[html]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item><item><title><![CDATA[What was the starting point for becoming a mid-level frontend engineer?]]></title><description><![CDATA[<h2 id="introduction">Introduction</h2>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Felipe Gustavo]]></title><description><![CDATA[I write about javascript, web apps and open source projects with focus in bring in-depth knowledge about fundamentals and technologies]]></description><link>https://felipegs.com</link><image><url>https://felipegs.com/icon.png</url><title>Felipe Gustavo</title><link>https://felipegs.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 22 Sep 2021 22:40:50 GMT</lastBuildDate><atom:link href="https://felipegs.com/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 05 Mar 2021 04:00:00 GMT</pubDate><copyright><![CDATA[2021 Felipe Gustavo]]></copyright><language><![CDATA[en]]></language><managingEditor><![CDATA[felipegdas07@gmail.com]]></managingEditor><webMaster><![CDATA[felipegdas07@gmail.com]]></webMaster><ttl>60</ttl><item><title><![CDATA[What was the starting point for becoming a mid-level frontend engineer?]]></title><description><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>There are some turning points in our lives that change our way of viewing things and the future. One important of mine is the podcast that I heard in mid-2014 that made me take a technical computer course and brought me to this software’s world.</p>
 <p>After that, I went to college, started to work as a junior programmer and arrived at the position that I am today, as a mid-level frontend engineer.</p>
 <p>I need to make a disclaimer here: this is not a guide or something like that, it is just a little of my experiences.</p>
@@ -61,14 +43,14 @@ a mid-level developer. </p>
 <ul>
 <li><a href="https://indepth.dev/posts/1005/level-up-your-reverse-engineering-skills">Level Up Your Reverse Engineering Skills</a></li>
 <li><a href="https://indepth.dev/posts/1006/practical-application-of-reverse-engineering-guidelines-and-principles">Practical application of reverse-engineering guidelines and principles</a></li>
-</ul>]]></description><link>https://felipegs.com/blog/starting-point-to-become-mid-level</link><guid isPermaLink="true">https://felipegs.com/blog/starting-point-to-become-mid-level</guid><category><![CDATA[career]]></category><category><![CDATA[javascript]]></category><category><![CDATA[css]]></category><category><![CDATA[experience]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item><item><title><![CDATA[Understanding how the redux data flow really works]]></title><description><![CDATA[<h2 id="introduction">Introduction</h2>
+</ul>]]></description><link>https://felipegs.com/blog/starting-point-to-become-mid-level</link><guid isPermaLink="true">https://felipegs.com/blog/starting-point-to-become-mid-level</guid><category><![CDATA[career]]></category><category><![CDATA[javascript]]></category><category><![CDATA[css]]></category><category><![CDATA[experience]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Mon, 06 Sep 2021 01:13:02 GMT</pubDate></item><item><title><![CDATA[Understanding how the redux data flow really works]]></title><description><![CDATA[<h2 id="introduction">Introduction</h2>
 <p>Redux is one of the most used state management libraries available today for web applications. Most of the developers use that, but did not know how it works behind the scenes.</p>
 <p>Some time ago I decided to read the Redux codebase, to better understand the implementation of the library that I used in some jobs. In this work, I did some notes, and this article is a more complete version of that.</p>
 <p><strong>Disclaimer</strong>: This article tries to be a deep dive into Redux. It is not a tutorial and it requires a basic knowledge about Redux, the idea here is to understand the internals and not teach how to use.</p>
 <h2 id="dataflow">Dataflow</h2>
 <p>The data flow of Redux is the base of the library. It is one of the first things that we learn when we start to study Redux.</p>
 <p>You dispatch an action, that is a plain object, to the store. This updates the state using the reducer function and this new state returns to the application, updating the UI.</p>
-<p><img src="./assets/redux-data-flow.gif" alt="alt text" title="Redux data flow diagram, showing store, reducer, state and event handler and dispatch blocks interacting" /></p>
+<p><img src="/img/redux-data-flow.gif" alt="&quot;Redux data flow diagram, showing store, reducer, state and event handler and dispatch blocks interacting&quot;" /></p>
 <p>One important thing to understand here is the architecture of Redux. It consists of the core that handles the basic features, such as dispatch actions, update the store and notify the state updates.</p>
 <p>Another part is the bindings, the most popular one that is supported by the Redux core team is the React one, called react-redux. This module connects the Redux core to react applications, creating HOC and Hooks that the react developers use to develop the UIs in the end.</p>
 <p>Our focus in this article will be the Redux core. Mainly, the store object. There is the place where the state tree is created and where it is provided the <code>dispatch</code> and <code>subscribe</code> methods. The both are the most important methods to Redux data flow work.</p>
@@ -210,7 +192,7 @@ if (typeof action.type === 'undefined') {
 <p>After all this state update, they need to run the listeners to notify the subscribers that the state changed. We will talk more about this in the next section.</p>
 <h2 id="notify">Notify</h2>
 <p>The notification process of Redux is made by the method called <code>subscribe</code>. It is basically an observer design pattern, this method allows adding a listener function that is executed after a state update.</p>
-<p><img src="./assets/observer-pattern.png" alt="alt text" title="Observer pattern diagram showing the Subject connect with a lot of Observer blocks" /></p>
+<p><img src="/img/observer-pattern.png" alt="Observer pattern diagram showing the Subject connect with a lot of Observer blocks" /></p>
 <p>We can see the hole code of the <code>subscribe</code> method below:</p>
 <pre><code class="typescript language-typescript">function subscribe(listener: () =&gt; void) {
   if (typeof listener !== 'function') {
@@ -320,17 +302,27 @@ for (let i = 0; i &lt; listeners.length; i++) {
 <li><a href="https://redux.js.org/tutorials/essentials/part-2-app-structure#reducers-and-immutable-updates">Redux Essentials Docs: Reducers and Immutable Updates</a></li>
 <li><a href="https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow">Redux Fundamentals Docs: Data Flow</a></li>
 <li><a href="https://github.com/reduxjs/redux/blob/master/src/createStore.ts">Redux source code on master v4.1.1</a></li>
-</ul>]]></description><link>https://felipegs.com/blog/under-the-hood-of-redux-data-flow</link><guid isPermaLink="true">https://felipegs.com/blog/under-the-hood-of-redux-data-flow</guid><category><![CDATA[javascript]]></category><category><![CDATA[redux]]></category><category><![CDATA[in-depth]]></category><category><![CDATA[immutability]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item><item><title><![CDATA[Understanding BEMCSS]]></title><description><![CDATA[<p>When the use of CSS is no longer just the stylization of personal websites or small projects and moves to large, scalable and complex projects, there is a need to organize and think about the architecture for the CSS. Simple things like class naming can become a huge problem in future maintenance.</p>
+</ul>]]></description><link>https://felipegs.com/blog/under-the-hood-of-redux-data-flow</link><guid isPermaLink="true">https://felipegs.com/blog/under-the-hood-of-redux-data-flow</guid><category><![CDATA[javascript]]></category><category><![CDATA[redux]]></category><category><![CDATA[in-depth]]></category><category><![CDATA[immutability]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Fri, 20 Aug 2021 01:13:02 GMT</pubDate></item><item><title><![CDATA[Some thoughts about frontend learning]]></title><description><![CDATA[<p>Everyday a great number of new people start to study programming and web development. The Front-end is one of the main areas of software development that are chosen by this people. And they have a lot of questions about what framework/library to learn, what tools to use and etc.</p>
+<p>But, if I could give an advice to them, I would say that the most important thing is to dominate the fundamental technologies of the web. Become advanced in this technologies, not just learn the basic stuff, because with this solid fundamentals, the path to learn advanced libraries, frameworks and tools will be easier than before.</p>
+<h2 id="htmlcssjavascript">HTML, CSS &amp; JAVASCRIPT</h2>
+<p>The three main Front-end technologies hide a trap. Its easy to learn the basics, but hard to learn the advanced concepts and know this advanced content will be the difference in your career as a developer.</p>
+<p>We see in great companies developers having problems making layouts with CSS, for not knowing how the box-model works; or not making the app fully accessible for not using a semantic HTML approach. And with the JavaScript this become much more important, because of the peculiarities of the language.</p>
+<h3 id="2080rule">20-80 rule</h3>
+<p>This technologies use the 20-80 rule. With 20% of the effort you will learn 80% what you need to start to work in the market. The problem is that only know the basics will make you have a lot of issues in problem solving, taking you to difficulties, bugs and errors.</p>
+<p>The big problem is that learn this other 20% requires 80% of the effort!</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>So the advice is to keep calm and go deep in the learning of this three technologies. Please, don’t underestimate the complexity of HTML, CSS and JavaScript. And understand that all that amazing frameworks, that huge number of names and tools is made with this three fundamental technologies.</p>
+<ul>
+<li><p>Template engines like liquid, pug, EJS and etc is converted to HTML.</p></li>
+<li><p>The pre-processors like SASS and LESS is just CSS with some other features.</p></li>
+<li><p>React, Angular, Vue is just JavaScript with some design patterns and software engineering concepts.</p></li>
+</ul>
+<p>The learning curve to this hype tools is very low if you have an advanced knowledge in the fundamentals. Here is an amazing website with a list of the topics that is nice to learn in the three technologies and a lot of others too: </p>
+<ul>
+<li><a href="https://andreasbm.github.io/web-skills/">Web Skills Website</a></li>
+</ul>]]></description><link>https://felipegs.com/blog/some-thoughts-about-frontend-learning</link><guid isPermaLink="true">https://felipegs.com/blog/some-thoughts-about-frontend-learning</guid><category><![CDATA[career]]></category><category><![CDATA[javascript]]></category><category><![CDATA[css]]></category><category><![CDATA[html]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Thu, 14 May 2020 01:13:02 GMT</pubDate></item><item><title><![CDATA[Understanding BEMCSS]]></title><description><![CDATA[<p>When the use of CSS is no longer just the stylization of personal websites or small projects and moves to large, scalable and complex projects, there is a need to organize and think about the architecture for the CSS. Simple things like class naming can become a huge problem in future maintenance.</p>
 <p>To correct problems like these, organizational architectures and methodologies were created and one of the most popular is BEMCSS.</p>
-<h4 id="sumrio">Sumário:</h4>
-<p><a href="#O-que-é">O que é?</a><br />
-<a href="#Block">Block</a><br />
-<a href="#Element">Element</a><br />
-<a href="#Modifier">Modifier</a><br />
-<a href="#Uma-nova-forma-de-pensar-CSS">Uma nova forma de pensar CSS</a><br />
-<a href="#Conclusao">Conclusão</a><br />
-<a href="#Fontes">Fontes</a> </p>
-<h2 id="oque">O que é?</h2>
+<h2 id="whatisit">What is it?</h2>
 <p>The acronym comes from Block-Element-Modifier, which is the way designated to create names for the classes. The idea is to create a rigid standard for class naming, making it easy to read and understand what the class does and what component it targets.
 The class names follow the line:</p>
 <pre><code class="css language-css">.block__element--modifier {}
@@ -372,4 +364,4 @@ It is important to note that BEM is a highly flexible methodology, adapting and 
 <h3 id="researchsource">Research source:</h3>
 <ul>
 <li><a href="http://getbem.com/">getbem</a></li>
-</ul>]]></description><link>https://felipegs.com/blog/understanding-bemcss</link><guid isPermaLink="true">https://felipegs.com/blog/understanding-bemcss</guid><category><![CDATA[CSS3]]></category><category><![CDATA[Begginer]]></category><category><![CDATA[Architecture]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sat, 09 May 2020 22:48:42 GMT</pubDate></item></channel></rss>
+</ul>]]></description><link>https://felipegs.com/blog/understanding-bemcss</link><guid isPermaLink="true">https://felipegs.com/blog/understanding-bemcss</guid><category><![CDATA[CSS3]]></category><category><![CDATA[Begginer]]></category><category><![CDATA[Architecture]]></category><dc:creator><![CDATA[Felipe Gustavo]]></dc:creator><pubDate>Sun, 17 Nov 2019 01:13:02 GMT</pubDate></item></channel></rss>

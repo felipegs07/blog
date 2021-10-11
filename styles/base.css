@@ -264,9 +264,9 @@ hr {
   padding: 0;
 }
 
-.author-line.subtle {
+/* .author-line.subtle {
   opacity: 0.6;
-}
+} */
 
 .blog-post {
   display: flex;
@@ -407,7 +407,6 @@ hr {
   margin: 0px;
   padding: 0px;
   font-size: 12pt;
-  color: #888;
   padding-top: 0px;
 }
 

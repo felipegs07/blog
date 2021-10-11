@@ -21,7 +21,7 @@ export const Author = ({ title, description, date }: Author) => {
     <div className="author-container">
       <div className="author">
         {globals.authorPhoto && (
-          <img src={globals.authorPhoto} className="author-image" />
+          <img alt="Felipe Gustavo's photo, with dark background" src={globals.authorPhoto} className="author-image" />
         )}
         <AuthorLines title={title} description={description} date={date} />
       </div>

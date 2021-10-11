@@ -9,6 +9,7 @@ const App: React.FC = ({ Component, pageProps }: any) => {
   return (
     <div className="container">
       <Head>
+        <html lang="en-US" />
         {globals.googleAnalyticsId && (
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${globals.googleAnalyticsId}`}></script>
         )}
@@ -23,6 +24,9 @@ const App: React.FC = ({ Component, pageProps }: any) => {
             `,
           }}></script>
         )}
+         <meta name="description" content={globals.siteDescription}></meta>
+         <meta name="author" content={globals.yourName}></meta>
+         <meta name="keywords" content={globals.keyWords}></meta>
       </Head>
       <Header />
       <Component {...pageProps} />
